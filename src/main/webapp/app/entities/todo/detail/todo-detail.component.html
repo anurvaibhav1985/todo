@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="todo">
+      <h2 data-cy="todoDetailsHeading"><span jhiTranslate="todoApp.todo.detail.title">Todo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ todo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.todo.name">Name</span></dt>
+        <dd>
+          <span>{{ todo.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.todo.desc">Desc</span></dt>
+        <dd>
+          <span>{{ todo.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.todo.active">Active</span></dt>
+        <dd>
+          <span>{{ todo.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.todo.version">Version</span></dt>
+        <dd>
+          <span>{{ todo.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.todo.user">User</span></dt>
+        <dd>
+          <span>{{ todo.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/todo', todo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

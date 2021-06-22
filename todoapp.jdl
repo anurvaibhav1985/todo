@@ -1,0 +1,86 @@
+
+application {
+  config {
+    baseName todo,
+    applicationType monolith,
+    packageName com.todoapp,
+    authenticationType oauth2,
+    skipUserManagement true,
+    serverPort 8080,
+    prodDatabaseType postgresql,
+    devDatabaseType postgresql,
+    cacheProvider ehcache,
+    testFrameworks [gatling,cucumber],
+    clientFramework angularX,
+    enableSwaggerCodegen true
+    
+  }
+  entities *
+  paginate * with pagination
+  dto * with mapstruct
+  filter *
+  
+}
+
+entity User {
+ name String,
+ email String,
+ active String
+}
+
+entity Todo {
+ name String,
+ desc String,
+ active String,
+ version Integer
+}
+
+entity Task {
+ name String,
+ type String,
+ desc String,
+ plannedStartDate Instant,
+ plannedEndDate Instant,
+ active String,
+ version Integer
+}
+
+entity TaskInstance {
+ name String,
+ type String,
+ desc String,
+ status TaskStatus,
+ plannedStartDate Instant,
+ plannedEndDate Instant,
+ actualStartDate Instant,
+ actualEndDate Instant,
+ timeSpent Double,
+ active String,
+ version Integer
+}
+
+
+relationship OneToMany {
+  User to Todo
+}
+
+relationship OneToMany {
+  Todo to Task
+}
+relationship OneToMany {
+  Task to TaskInstance
+}
+
+relationship OneToMany {
+  Todo to TaskInstance
+}
+
+relationship OneToMany {
+  User to TaskInstance
+}
+
+enum TaskStatus {
+  INPROGRESS,
+  NOTSTARTED,
+  DONE
+}

@@ -1,0 +1,80 @@
+{
+  "name": "TaskInstance",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INPROGRESS,NOTSTARTED,DONE"
+    },
+    {
+      "fieldName": "plannedStartDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "plannedEndDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "actualStartDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "actualEndDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "timeSpent",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "taskInstance",
+      "relationshipName": "task"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "todo",
+      "otherEntityRelationshipName": "taskInstance",
+      "relationshipName": "todo"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "taskInstance",
+      "relationshipName": "user"
+    }
+  ],
+  "entityTableName": "task_instance",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["todo"],
+  "changelogDate": "20210621072053"
+}

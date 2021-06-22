@@ -1,0 +1,10 @@
+{
+  "todoApp": {
+    "TaskStatus": {
+      "null": "",
+      "INPROGRESS": "INPROGRESS",
+      "NOTSTARTED": "NOTSTARTED",
+      "DONE": "DONE"
+    }
+  }
+}

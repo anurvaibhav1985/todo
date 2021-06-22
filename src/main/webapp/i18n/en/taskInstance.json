@@ -1,0 +1,37 @@
+{
+  "todoApp": {
+    "taskInstance": {
+      "home": {
+        "title": "Task Instances",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Task Instance",
+        "createOrEditLabel": "Create or edit a Task Instance",
+        "notFound": "No Task Instances found"
+      },
+      "created": "A new Task Instance is created with identifier {{ param }}",
+      "updated": "A Task Instance is updated with identifier {{ param }}",
+      "deleted": "A Task Instance is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Task Instance {{ id }}?"
+      },
+      "detail": {
+        "title": "Task Instance"
+      },
+      "id": "ID",
+      "name": "Name",
+      "type": "Type",
+      "desc": "Desc",
+      "status": "Status",
+      "plannedStartDate": "Planned Start Date",
+      "plannedEndDate": "Planned End Date",
+      "actualStartDate": "Actual Start Date",
+      "actualEndDate": "Actual End Date",
+      "timeSpent": "Time Spent",
+      "active": "Active",
+      "version": "Version",
+      "task": "Task",
+      "todo": "Todo",
+      "user": "User"
+    }
+  }
+}

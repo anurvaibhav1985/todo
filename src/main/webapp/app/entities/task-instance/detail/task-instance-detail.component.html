@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="taskInstance">
+      <h2 data-cy="taskInstanceDetailsHeading"><span jhiTranslate="todoApp.taskInstance.detail.title">Task Instance</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ taskInstance.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.name">Name</span></dt>
+        <dd>
+          <span>{{ taskInstance.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.type">Type</span></dt>
+        <dd>
+          <span>{{ taskInstance.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.desc">Desc</span></dt>
+        <dd>
+          <span>{{ taskInstance.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'todoApp.TaskStatus.' + taskInstance.status }}">{{ taskInstance.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.plannedStartDate">Planned Start Date</span></dt>
+        <dd>
+          <span>{{ taskInstance.plannedStartDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.plannedEndDate">Planned End Date</span></dt>
+        <dd>
+          <span>{{ taskInstance.plannedEndDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.actualStartDate">Actual Start Date</span></dt>
+        <dd>
+          <span>{{ taskInstance.actualStartDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.actualEndDate">Actual End Date</span></dt>
+        <dd>
+          <span>{{ taskInstance.actualEndDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.timeSpent">Time Spent</span></dt>
+        <dd>
+          <span>{{ taskInstance.timeSpent }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.active">Active</span></dt>
+        <dd>
+          <span>{{ taskInstance.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.version">Version</span></dt>
+        <dd>
+          <span>{{ taskInstance.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.task">Task</span></dt>
+        <dd>
+          <div *ngIf="taskInstance.task">
+            <a [routerLink]="['/task', taskInstance.task?.id, 'view']">{{ taskInstance.task?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.todo">Todo</span></dt>
+        <dd>
+          <div *ngIf="taskInstance.todo">
+            <a [routerLink]="['/todo', taskInstance.todo?.id, 'view']">{{ taskInstance.todo?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="todoApp.taskInstance.user">User</span></dt>
+        <dd>
+          <span>{{ taskInstance.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/task-instance', taskInstance.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

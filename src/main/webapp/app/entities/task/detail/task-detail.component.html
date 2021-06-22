@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="task">
+      <h2 data-cy="taskDetailsHeading"><span jhiTranslate="todoApp.task.detail.title">Task</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ task.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.name">Name</span></dt>
+        <dd>
+          <span>{{ task.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.type">Type</span></dt>
+        <dd>
+          <span>{{ task.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.desc">Desc</span></dt>
+        <dd>
+          <span>{{ task.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.plannedStartDate">Planned Start Date</span></dt>
+        <dd>
+          <span>{{ task.plannedStartDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.plannedEndDate">Planned End Date</span></dt>
+        <dd>
+          <span>{{ task.plannedEndDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.active">Active</span></dt>
+        <dd>
+          <span>{{ task.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.version">Version</span></dt>
+        <dd>
+          <span>{{ task.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="todoApp.task.todo">Todo</span></dt>
+        <dd>
+          <div *ngIf="task.todo">
+            <a [routerLink]="['/todo', task.todo?.id, 'view']">{{ task.todo?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/task', task.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

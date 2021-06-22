@@ -1,0 +1,57 @@
+{
+  "name": "Task",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "plannedStartDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "plannedEndDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "taskInstance",
+      "otherEntityRelationshipName": "task",
+      "relationshipName": "taskInstance"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "todo",
+      "otherEntityRelationshipName": "task",
+      "relationshipName": "todo"
+    }
+  ],
+  "entityTableName": "task",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["todo"],
+  "changelogDate": "20210621071953"
+}

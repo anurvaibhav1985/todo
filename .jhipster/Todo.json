@@ -1,0 +1,51 @@
+{
+  "name": "Todo",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "todo",
+      "relationshipName": "task"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "taskInstance",
+      "otherEntityRelationshipName": "todo",
+      "relationshipName": "taskInstance"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "todo",
+      "relationshipName": "user"
+    }
+  ],
+  "entityTableName": "todo",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["todo"],
+  "changelogDate": "20210621071853"
+}

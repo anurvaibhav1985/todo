@@ -1,0 +1,10 @@
+id;login;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by
+1;user2;user2;test;user2@some.com;;true;;;
+2;user3;user2;test;user3@some.com;;true;;;
+3;user4;user2;test;user4@some.com;;true;;;
+4;user5;user2;test;user5@some.com;;true;;;
+5;user6;user2;test;user6@some.com;;true;;;
+6;user7;user2;test;user7@some.com;;true;;;
+7;user8;user2;test;user8@some.com;;true;;;
+8;user9;user2;test;user9@some.com;;true;;;
+10;user10;user2;test;user10@some.com;;true;;;

@@ -1,0 +1,185 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-task-instance-heading"
+        data-cy="TaskInstanceCreateUpdateHeading"
+        jhiTranslate="todoApp.taskInstance.home.createOrEditLabel"
+      >
+        Create or edit a Task Instance
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.type" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.desc" for="field_desc">Desc</label>
+          <input type="text" class="form-control" name="desc" id="field_desc" data-cy="desc" formControlName="desc" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'todoApp.TaskStatus.null' | translate }}</option>
+            <option value="INPROGRESS">{{ 'todoApp.TaskStatus.INPROGRESS' | translate }}</option>
+            <option value="NOTSTARTED">{{ 'todoApp.TaskStatus.NOTSTARTED' | translate }}</option>
+            <option value="DONE">{{ 'todoApp.TaskStatus.DONE' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.plannedStartDate" for="field_plannedStartDate"
+            >Planned Start Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_plannedStartDate"
+              data-cy="plannedStartDate"
+              type="datetime-local"
+              class="form-control"
+              name="plannedStartDate"
+              formControlName="plannedStartDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.plannedEndDate" for="field_plannedEndDate"
+            >Planned End Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_plannedEndDate"
+              data-cy="plannedEndDate"
+              type="datetime-local"
+              class="form-control"
+              name="plannedEndDate"
+              formControlName="plannedEndDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.actualStartDate" for="field_actualStartDate"
+            >Actual Start Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_actualStartDate"
+              data-cy="actualStartDate"
+              type="datetime-local"
+              class="form-control"
+              name="actualStartDate"
+              formControlName="actualStartDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.actualEndDate" for="field_actualEndDate"
+            >Actual End Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_actualEndDate"
+              data-cy="actualEndDate"
+              type="datetime-local"
+              class="form-control"
+              name="actualEndDate"
+              formControlName="actualEndDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.timeSpent" for="field_timeSpent">Time Spent</label>
+          <input type="number" class="form-control" name="timeSpent" id="field_timeSpent" data-cy="timeSpent" formControlName="timeSpent" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.active" for="field_active">Active</label>
+          <input type="text" class="form-control" name="active" id="field_active" data-cy="active" formControlName="active" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.version" for="field_version">Version</label>
+          <input type="number" class="form-control" name="version" id="field_version" data-cy="version" formControlName="version" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.task" for="field_task">Task</label>
+          <select class="form-control" id="field_task" data-cy="task" name="task" formControlName="task">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="taskOption.id === editForm.get('task')!.value?.id ? editForm.get('task')!.value : taskOption"
+              *ngFor="let taskOption of tasksSharedCollection; trackBy: trackTaskById"
+            >
+              {{ taskOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.todo" for="field_todo">Todo</label>
+          <select class="form-control" id="field_todo" data-cy="todo" name="todo" formControlName="todo">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="todoOption.id === editForm.get('todo')!.value?.id ? editForm.get('todo')!.value : todoOption"
+              *ngFor="let todoOption of todosSharedCollection; trackBy: trackTodoById"
+            >
+              {{ todoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="todoApp.taskInstance.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
