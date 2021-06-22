@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { TodoMapper.class })
 public interface TaskMapper extends EntityMapper<TaskDTO, Task> {
-    @Mapping(target = "todo", source = "todo")
+    @Mapping(target = "todo", source = "todo", qualifiedByName = "id")
     TaskDTO toDto(Task s);
 
     @Named("id")

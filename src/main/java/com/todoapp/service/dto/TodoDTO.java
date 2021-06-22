@@ -24,13 +24,13 @@ public class TodoDTO implements Serializable {
 
     private UserDTO user;
 
-    private Set<TaskInstance> taskInstances = new HashSet<>();
+    private Set<TaskInstanceDTO> taskInstances = new HashSet<>();
 
-    public Set<TaskInstance> getTaskInstances() {
+    public Set<TaskInstanceDTO> getTaskInstances() {
         return taskInstances;
     }
 
-    public void setTaskInstances(Set<TaskInstance> taskInstances) {
+    public void setTaskInstances(Set<TaskInstanceDTO> taskInstances) {
         this.taskInstances = taskInstances;
     }
 

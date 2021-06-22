@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.commons.compress.utils.Sets;
 import org.slf4j.Logger;
@@ -47,6 +48,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -299,6 +301,7 @@ public class TodoResource {
     }
 
     @GetMapping("/todos/dashboard")
+    @Transactional
     public ResponseEntity<List<TodoDTO>> getDashboard() {
         Optional<String> currentUser = SecurityUtils.getCurrentUserLogin();
         User user = userRepository.findOneByLogin(currentUser.get()).get();
@@ -308,6 +311,7 @@ public class TodoResource {
         f.setEquals(user.getId());
         criteria.setUserId(f);
         List<TaskInstanceDTO> dtoList = taskInstanceQueryService.findByCriteria(criteria);
+        Map<Long, List<TaskInstanceDTO>> todoTaskMap = dtoList.stream().collect(Collectors.groupingBy(x -> x.getTodo().getId()));
 
         // get the todo list from this
         List<Long> todos = dtoList.stream().map(k -> k.getTodo().getId()).collect(Collectors.toList());
@@ -316,6 +320,9 @@ public class TodoResource {
         t.setIn(todos);
         c.setId(t);
         List<TodoDTO> todoDtoList = todoQueryService.findByCriteria(c);
+        for (TodoDTO todoDTO : todoDtoList) {
+            todoDTO.setTaskInstances(new HashSet<TaskInstanceDTO>(todoTaskMap.get(todoDTO.getId())));
+        }
 
         return ResponseEntity.ok().body(todoDtoList);
     }
